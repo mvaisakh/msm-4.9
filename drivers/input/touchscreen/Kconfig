@@ -1236,7 +1236,7 @@ config TOUCHSCREEN_ROHM_BU21023
 
 config TOUCHSCREEN_SYNAPTICS_DSX
         bool "Synaptics Touchscreen Driver"
-        depends on I2C
+        default n
         help
           Say Y here if you have a Synaptics Touchscreen.
 
