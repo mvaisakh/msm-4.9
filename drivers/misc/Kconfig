@@ -830,6 +830,14 @@ config USB3813
 	  This option enables a device driver for the USB3813 which is a
 	  3-Port Hub Controller.
 
+config MODS_USB_EXT_BRIDGE
+	bool "Enable interface to support MODS USB"
+	default n
+	help
+	  This enables an interface that integrates the MODS usb greybus
+	  module with the kernel USB drivers. If you are using the MODS
+	  kernel modules, you should select yes, if not no.
+
 source "drivers/misc/c2port/Kconfig"
 source "drivers/misc/eeprom/Kconfig"
 source "drivers/misc/cb710/Kconfig"
