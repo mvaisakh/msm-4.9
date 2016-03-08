@@ -1,4 +1,4 @@
-# We can build either as part of a standalone Kernel build or part
+ # We can build either as part of a standalone Kernel build or part
 # of an Android build.  Determine which mechanism is being used
 ifeq ($(MODNAME),)
 	KERNEL_BUILD := 1
@@ -747,6 +747,7 @@ endif
 
 CDEFINES += -DFEATURE_WLAN_CH_AVOID
 CDEFINES += -DWLAN_FEATURE_AP_HT40_24G
+CDEFINES += -DMOTO_UTAGS_MAC
 
 # Some kernel include files are being moved.  Check to see if
 # the old version of the files are present
