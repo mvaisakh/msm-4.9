@@ -5960,7 +5960,8 @@ static int mdss_mdp_overlay_on(struct msm_fb_data_type *mfd)
 	 * should not be skipped, instead, the handoff can be done
 	 */
 	if (!mfd->panel_info->cont_splash_enabled &&
-		!mdata->handoff_pending) {
+		!mdata->handoff_pending &&
+		!mfd->panel_info->is_dba_panel) {
 		rc = mdss_mdp_overlay_start(mfd);
 		if (rc)
 			goto end;
