@@ -958,7 +958,7 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
 
-	pr_debug("%s: ndx=%d\n", __func__, ctrl->ndx);
+	pr_info("%s: ndx=%d\n", __func__, ctrl->ndx);
 
 	if (pinfo->dcs_cmd_by_left) {
 		if (ctrl->ndx != DSI_CTRL_LEFT)
@@ -986,6 +986,7 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 	mdss_dsi_panel_apply_display_setting(pdata, pinfo->persist_mode);
 
 end:
+	pr_info("%s[%d]-.\n", __func__, ctrl->ndx);
 	pr_debug("%s:-\n", __func__);
 	return ret;
 }
@@ -1038,6 +1039,7 @@ static int mdss_dsi_post_panel_on(struct mdss_panel_data *pdata)
 	mdss_dsi_post_panel_on_hdmi(pinfo);
 
 end:
+	pr_info("%s[%d]-.\n", __func__, ctrl->ndx);
 	pr_debug("%s:-\n", __func__);
 	return 0;
 }
@@ -1074,7 +1076,7 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
 
-	pr_debug("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
+	pr_info("%s: ctrl=%pK ndx=%d\n", __func__, ctrl, ctrl->ndx);
 
 	if (pinfo->dcs_cmd_by_left) {
 		if (ctrl->ndx != DSI_CTRL_LEFT)
