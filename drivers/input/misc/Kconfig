@@ -896,4 +896,10 @@ config INPUT_SX9310
           Say Y to enable the SAR detection application, if N here not to use the
           this SAR sensor.
 
+config SENSORS_FPC_1020
+	tristate "fpc fingerprint sensor"
+	default n
+	help
+	  Say Y here if you wish to include support for finger print sensor.
+	  If unsure, say N.
 endif
