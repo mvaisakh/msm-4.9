@@ -215,7 +215,7 @@ static int pstore_unlink(struct inode *dir, struct dentry *dentry)
 
 	if (p->psi->erase)
 		p->psi->erase(p->type, p->id, p->count,
-			      dentry->d_inode->i_ctime, p->psi);
+			      d_inode(dentry)->i_ctime, p->psi);
 	else
 		return -EPERM;
 
@@ -392,7 +392,7 @@ int pstore_mkfile(enum pstore_type_id type, char *psname, u64 id, int count,
 		break;
 	}
 
-	mutex_lock(&root->d_inode->i_mutex);
+	inode_lock(d_inode(root));
 
 	dentry = d_alloc_name(root, name);
 	if (!dentry)
@@ -412,12 +412,12 @@ int pstore_mkfile(enum pstore_type_id type, char *psname, u64 id, int count,
 	list_add(&private->list, &allpstore);
 	spin_unlock_irqrestore(&allpstore_lock, flags);
 
-	mutex_unlock(&root->d_inode->i_mutex);
+	inode_lock(d_inode(root));
 
 	return 0;
 
 fail_lockedalloc:
-	mutex_unlock(&root->d_inode->i_mutex);
+	inode_lock(d_inode(root));
 	kfree(private);
 fail_alloc:
 	iput(inode);
@@ -435,8 +435,8 @@ static int pstore_fill_super(struct super_block *sb, void *data, int silent)
 	pstore_sb = sb;
 
 	sb->s_maxbytes		= MAX_LFS_FILESIZE;
-	sb->s_blocksize		= PAGE_CACHE_SIZE;
-	sb->s_blocksize_bits	= PAGE_CACHE_SHIFT;
+	sb->s_blocksize		= PAGE_SIZE;
+	sb->s_blocksize_bits	= PAGE_SHIFT;
 	sb->s_magic		= PSTOREFS_MAGIC;
 	sb->s_op		= &pstore_ops;
 	sb->s_time_gran		= 1;
