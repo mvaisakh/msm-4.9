@@ -2,6 +2,13 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb msm8916-mtp.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
 dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
 
+dtb-$(CONFIG_CEDRIC_DTB) += \
+	msm8937-cedric-p1.dtb \
+	msm8937-cedric-p2.dtb \
+	msm8937-cedric-p3.dtb \
+	msm8937-cedric-p4.dtb \
+	msm8937-cedric-p5.dtb
+
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 	dtbo-$(CONFIG_ARCH_SDM845) += \
 		sdm845-cdp-overlay.dtbo \
