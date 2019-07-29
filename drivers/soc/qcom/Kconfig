@@ -500,6 +500,14 @@ config TRACER_PKT
 	  processor communication protocols. The profiling information
 	  can be logged into the tracer packet itself.
 
+config CEDRIC_DTB
+	depends on ARCH_QCOM
+	default n
+	bool "Cedric DTBs"
+	help
+	  Only include Cedric specific DTBs to limit the number that
+	  get built during kernel compilation.
+
 config QTI_RPMH_API
 	bool "QTI RPMH (h/w accelerators) Communication API"
 	select MAILBOX
