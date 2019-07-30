@@ -10,10 +10,8 @@
  * GNU General Public License for more details.
  */
 
-/ {
-	aliases {
+&aliases {
 		spi6 = &spi_6;
-	};
 };
 
 &tlmm {
@@ -164,8 +162,7 @@
 	};
 };
 
-&soc {
-	spi_6: spi@7af6000 { /* BLSP2 QUP2 */
+&spi_6{ /* BLSP2 QUP2 */
 		compatible = "qcom,spi-qup-v2";
 		status = "ok";
 		#address-cells = <1>;
@@ -201,6 +198,5 @@
 			clocks = <&clock_gcc clk_gcc_blsp2_ahb_clk>,
 			<&clock_gcc clk_gcc_blsp2_qup2_spi_apps_clk>;
 		};
-	};
 };
 
