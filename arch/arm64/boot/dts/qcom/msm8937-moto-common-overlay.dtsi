@@ -11,7 +11,7 @@
  */
 
 #include "msm8937.dtsi"
-#include "msm-pmi8950.dtsi"
+#include "pmi8950.dtsi"
 #include "msm8937-pinctrl.dtsi"
 #include "msm8937-moto-pinctrl-overlay.dtsi"
 #include "carrier-channel-ids.dtsi"
