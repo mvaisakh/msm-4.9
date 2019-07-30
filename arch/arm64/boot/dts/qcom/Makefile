@@ -1,6 +1,10 @@
-dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb msm8916-mtp.dtb
-dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
-dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
+#dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb msm8916-mtp.dtb
+#dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
+#dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
+
+# Add 1k of padding to the DTBs to allow for environment variables
+# to be runtime added by the bootloader (i.e. /chosen properties)
+DTC_FLAGS += -p 1024
 
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 
