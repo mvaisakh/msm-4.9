@@ -38,9 +38,6 @@
 	};
 
 	sound {
-		/delete-property/ qcom,cdc-us-euro-gpios;
-		/delete-property/ qcom,msm-micbias1-ext-cap;
-		/delete-property/ qcom,msm-micbias2-ext-cap;
 		qcom,msm-gpios =
 			"pri_i2s";
 		qcom,pinctrl-names =
@@ -51,12 +48,6 @@
 			"pri_i2s_act";
 		pinctrl-0 = <&cdc_pdm_lines_sus &cdc_pdm_lines_2_sus>;
 		pinctrl-1 = <&cdc_pdm_lines_act &cdc_pdm_lines_2_act>;
-		/delete-property/ pinctrl-2;
-		/delete-property/ pinctrl-3;
-		/delete-property/ pinctrl-4;
-		/delete-property/ pinctrl-5;
-		/delete-property/ pinctrl-6;
-		/delete-property/ pinctrl-7;
 	};
 };
 
@@ -78,8 +69,6 @@
 		reg_array_val = <0x11 0x02 0x12 0x0b 0x13 0x03 0x14 0x77 0x15 0x81 0x18 0x5e 0x19 0x10 0x1a 0x04>;
 	};
 
-	/delete-node/ adv7533@39;
-	/delete-node/ pericom-type-c@1d;
 };
 
 
@@ -146,8 +135,7 @@
 };
 
 &spmi_bus {
-	qcom,pmi8950@2 {
-		/delete-node/ qcom,leds@a100;
+	qcom,pmi8950@2 {	
 
 		qcom,leds@1000 {
 			status = "ok";
@@ -188,7 +176,6 @@
 	qcom,fastchg-current-ma = <1850>;
 	qcom,chg-thermal-mitigation = <1850>, <1600>, <1200>, <1000>,
 				      <700>, <400>;
-	/delete-property/ qcom,dc-thermal-mitigation;
 	qcom,parallel-charge-current-map = <1850 1850 0>,
 					   <1600 1600 0>,
 					   <1200 1200 0>,
@@ -199,7 +186,7 @@
 	qcom,stepchg-current-ma = <1850>;
 	qcom,stepchg-taper-ma = <1500>;
 	qcom,stepchg-iterm-ma = <125>;
-	/delete-property/ qcom,enable-hvdcp-9v;
+
 };
 
 &pmi8950_fg {
