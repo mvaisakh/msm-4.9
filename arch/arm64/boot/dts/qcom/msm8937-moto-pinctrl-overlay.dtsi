@@ -248,19 +248,6 @@
 			};
 		};
 
-		spi7_cs0_active: spi7_cs0_active {
-			/* CS */
-			mux {
-				pins = "gpio87";
-				function = "blsp_spi7";
-			};
-			config {
-				pins = "gpio87";
-				drive-strength = <2>;
-				bias-disable;
-			};
-		};
-
 		spi7_cs0_sleep: spi7_cs0_sleep {
 			/* CS */
 			mux {
