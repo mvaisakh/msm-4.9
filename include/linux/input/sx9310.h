@@ -112,6 +112,12 @@
 #define DUMMY_SCAN_PERIOD	0x2
 #define DUMMY_RAW_DATA_CHANNEL	0x00
 
+/* Cap sensor report key, including cs0, cs1, cs2 and comb */
+#define KEY_CAP_CS0             0x270
+#define KEY_CAP_CS1             0x271
+#define KEY_CAP_CS2             0x272
+#define KEY_CAP_COMB            0x272
+
 /**************************************
 * define platform data
 *
