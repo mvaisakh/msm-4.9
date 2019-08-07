@@ -961,3 +961,12 @@ config BIG_CLUSTER_MIN_FREQ_ADJUST
 	  This driver is used to set the floor of the min frequency of big cluster
 	  to the user specified value when the cluster is not power collapsed. When
 	  the cluster is power collpsed it resets the value to physical limits.
+
+config MMI_DTB
+	depends on ARCH_QCOM
+	default n
+	bool "Motorola Mobility Device DTBs"
+	help
+	  Only include Motorola device specific DTBs to limit the number that
+	  get built during kernel compilation.
+
