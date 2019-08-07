@@ -172,7 +172,7 @@
 	};
 };
 
-&pmi8950_charger {
+&qpnp_smbcharger {
 	qcom,fastchg-current-ma = <1850>;
 	qcom,chg-thermal-mitigation = <1850>, <1600>, <1200>, <1000>,
 				      <700>, <400>;
@@ -189,7 +189,7 @@
 
 };
 
-&pmi8950_fg {
+&qpnp_fg {
 	qcom,ext-sense-type; /* External Sense Resistor */
 	qcom,thermal-coefficients =  /bits/ 16 <0x2d87 0x9151 0x7d3c>;
 };

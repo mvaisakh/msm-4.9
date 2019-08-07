@@ -13,7 +13,6 @@
 
 #include "msm8937.dtsi"
 #include "pmi8950.dtsi"
-#include "msm8953-pmi8950.dtsi"
 
 &soc {
 	spi_7: spi@7af7000 { };

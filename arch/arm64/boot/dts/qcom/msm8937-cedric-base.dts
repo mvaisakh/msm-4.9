@@ -15,7 +15,7 @@
 /dts-v1/;
 /plugin/;
  
-#include "msm8937.dtsi"
+#include "msm8937-moto-base.dtsi"
 
 &aliases {
 

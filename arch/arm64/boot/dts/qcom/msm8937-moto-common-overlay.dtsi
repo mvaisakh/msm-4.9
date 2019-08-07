@@ -11,6 +11,7 @@
  */
 
 #include "msm8937.dtsi"
+#include "msm8937-moto-base.dtsi"
 #include "pmi8950.dtsi"
 #include "msm8937-pinctrl.dtsi"
 #include "msm8937-moto-pinctrl-overlay.dtsi"
@@ -18,7 +19,7 @@
 #include "dsi-panel-mot-dummy-qhd-video.dtsi"
 #include <moto-mem-reserve.h>
 
-&reserved-memory {
+&reserved_memory {
 		ramoops_mem: ramoops_mem_region {
 			no-map;
 			reg = <0x0 0xae000000 0x0 0x80000>;
@@ -298,8 +299,8 @@
 			"AMIC2", "MIC BIAS Internal2",
 			"AMIC3", "MIC BIAS External";
 		
-		asoc-codec = <&stub_codec>, <&pm8937_cajon_dig>;
-		asoc-codec-names = "msm-stub-codec.1", "cajon_codec";
+		asoc-codec = <&stub_codec>, <&pmic_analog_codec>;
+		asoc-codec-names = "msm-stub-codec.1", "analogue_codec";
 	};
 
 	ramoops {
@@ -354,24 +355,6 @@
 	qcom,bam-producer-pipe-index = <9>;
 	/* master-id for BLSP2 is MSM_BUS_MASTER_BLSP_2 or 84 */
 	qcom,master-id = <84>;
-	status = "/chosen", "mmi,dtv", "true";
-	fci_dtv: fc8180@0 {
-		status = "/chosen", "mmi,dtv", "true";
-		compatible = "fci,isdbt";
-		reg = <0>;
-		spi-max-frequency = <19200000>;
-		irq-gpio = <&tlmm 50 0>;
-		anten-gpio = <&tlmm 96 0>;
-		enable-gpio = <&tlmm 94 0>;
-		enable-active-high;
-		pinctrl-names = "default";
-		pinctrl-0 = <&dtv_output_default &dtv_input_default>;
-		clocks = <&clock_gcc clk_bb_clk2>;
-		clock-names = "dtv_refclk";
-		isdbt_vdd-supply = <&pm8937_l6>;
-		qcom,vdd-min-max-voltage = <1800000 1800000>;
-		qcom,bbm-xtal-freq = <26000>;
-	};
 };
 
 &spi_4 { /* BLSP1 QUP4 */
@@ -541,7 +524,7 @@
 };
 
 
-&pmi8950_charger {
+&qpnp_smbcharger {
 	status = "okay";
 	qcom,iterm-disabled;
 	qcom,usbid-disabled;
@@ -588,7 +571,7 @@
 		qcom,batt-id-range-pct = <100>;
 };
 	
-&pmi8950_fg {
+&qpnp_fg {
 	status = "okay";
 	qcom,warm-bat-decidegc = <450>;
 	qcom,cool-bat-decidegc = <0>;
