@@ -21,7 +21,12 @@
 
 &reserved_memory {
 		ramoops_mem: ramoops_mem_region {
+			compatible = "ramoops";
+			ramoops-annotate-size = <0x800>;
 			no-map;
+			console-size = <0x40000>;
+			pmsg-size = <0x40000>;
+			record-size = <0x3f800>;
 			reg = <0x0 0xae000000 0x0 0x80000>;
 			label = "ramoops_mem";
 	};
