@@ -9,10 +9,19 @@ DTC_FLAGS += -p 1024
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 
 	dtbo-$(CONFIG_CEDRIC_DTB) += msm8937-cedric-mot-overlay.dtbo
-	
+
 msm8937-cedric-mot-overlay.dtbo-base += msm8937-cedric-base.dts
+else
+dtb-$(CONFIG_CEDRIC_DTB) += \
+	msm8937-cedric-p1.dtb \
+	msm8937-cedric-p2.dtb \
+	msm8937-cedric-p3.dtb \
+	msm8937-cedric-p4.dtb \
+	msm8937-cedric-p5.dtb
+endif
 
 ifneq ($(CONFIG_MMI_DTB),y)
+ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 	dtbo-$(CONFIG_ARCH_SDM845) += \
 		sdm845-cdp-overlay.dtbo \
 		sdm845-mtp-overlay.dtbo \
@@ -104,14 +113,6 @@ sda845-v2.1-cdp-sdxpoorwills-overlay.dtbo-base := sda845-v2.1.dtb
 sda845-v2.1-mtp-sdxpoorwills-overlay.dtbo-base := sda845-v2.1.dtb
 sda845-v2-mtp-sdxpoorwills-overlay.dtbo-base := sda845-v2.dtb
 endif
-else
-
-dtb-$(CONFIG_CEDRIC_DTB) += \
-	msm8937-cedric-p1.dtb \
-	msm8937-cedric-p2.dtb \
-	msm8937-cedric-p3.dtb \
-	msm8937-cedric-p4.dtb \
-	msm8937-cedric-p5.dtb
 
 ifneq ($(CONFIG_MMI_DTB),y)
 dtb-$(CONFIG_ARCH_SDM845) += sdm845-sim.dtb \
@@ -133,7 +134,6 @@ dtb-$(CONFIG_ARCH_SDM845) += sdm845-sim.dtb \
 	sdm845-interposer-sdm670-cdp.dtb \
 	sdm845-v2.1-rb3.dtb \
 	sdm845-v2.1-mtp.dtb
-endif
 
 ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 	dtbo-$(CONFIG_ARCH_SDM670) += \
@@ -672,6 +672,7 @@ dtb-$(CONFIG_ARCH_SDM429) += sdm429-mtp.dtb \
 	sdm429-spyro-wdp.dtb \
 	sdw3300-bg-1gb-wtp.dtb
 
+endif
 endif
 endif
 
