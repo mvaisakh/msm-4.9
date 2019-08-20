@@ -10,8 +10,8 @@
  * GNU General Public License for more details.
  */
 
-#include "msm8937.dtsi"
 #include "msm8937-moto-base.dtsi"
+#include "msm8937.dtsi"
 #include "pmi8950.dtsi"
 #include "msm8937-pinctrl.dtsi"
 #include "msm8937-moto-pinctrl-overlay.dtsi"

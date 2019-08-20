@@ -30,8 +30,7 @@
 		spi4 = &spi_4;
 		i2c3 = &i2c_3;
 	};
-	reserved_memory: reserved-memory { };
 	mot_batterydata: qcom,battery-data {};
-	utags: utags { };
-	hw: hw { };
+	utags: utags {};
+	hw: hw {};
 };
