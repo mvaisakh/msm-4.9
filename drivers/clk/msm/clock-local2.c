@@ -827,8 +827,8 @@ static int branch_clk_enable(struct clk *c)
 		udelay(5);
 
 	/* Wait for clock to enable before continuing. */
-	branch_clk_halt_check(c, branch->halt_check, CBCR_REG(branch),
-				BRANCH_ON);
+//	branch_clk_halt_check(c, branch->halt_check, CBCR_REG(branch),
+//				BRANCH_ON);
 
 	return 0;
 }
