@@ -1,0 +1,83 @@
+/* Copyright (c) 2018, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2019, Vaisakh Murali
+ * Copyright (c) 2019, Wiktor Strzębała
+
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include "msm8937-moto-base.dtsi"
+
+&aliases {
+
+	/delete-property/ spi3;
+	/delete-property/ i2c5;
+
+};
+
+&soc {
+
+	/delete-property/ qcom,cdc-us-euro-gpios;
+	/delete-property/ qcom,msm-micbias1-ext-cap;
+	/delete-property/ qcom,msm-micbias2-ext-cap;
+
+
+	/delete-property/ pinctrl-2;
+	/delete-property/ pinctrl-3;
+	/delete-property/ pinctrl-4;
+	/delete-property/ pinctrl-5;
+	/delete-property/ pinctrl-6;
+	/delete-property/ pinctrl-7;
+
+	/delete-node/ spi@78b7000;
+	/delete-node/ sound-9335;
+	/delete-node/ i2c@7af5000;
+
+	/delete-property/ qcom,hdmi-dba-codec-rx;
+
+};
+
+&i2c_2 {
+
+	/delete-node/ adv7533@39;
+	/delete-node/ pericom-type-c@1d;
+
+};
+
+&spmi_bus {
+
+	/delete-node/ qcom,leds@a100;
+
+};
+
+&pmi8950_charger{
+
+	/delete-property/ qcom,dc-thermal-mitigation;
+
+};
+
+&pmi8950_fg {
+	/delete-property/ qcom,ext-sense-type; /* External Sense Resistor */
+}
+
+&mdss_dsi_active {
+	config {
+		/delete-property/ output-high;
+	};
+};
+
+&tlmm {
+
+	/delete-node/ pri-tlmm-lines;
+
+};

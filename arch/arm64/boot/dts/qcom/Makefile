@@ -11,6 +11,11 @@ ifeq ($(CONFIG_BUILD_ARM64_DT_OVERLAY),y)
 	dtbo-$(CONFIG_CEDRIC_DTB) += msm8937-cedric-mot-overlay.dtbo
 	
 msm8937-cedric-mot-overlay.dtbo-base += msm8937-cedric-base.dts
+
+	dtbo-$(CONFIG_MONTANA_DTB) += msm8937-montana-mot-overlay.dtbo
+
+msm8937-montana-mot-overlay.dtbo-base += msm8937-montana-base.dts
+
 else
 dtb-$(CONFIG_CEDRIC_DTB) += \
 	msm8937-cedric-p1.dtb \
@@ -18,6 +23,14 @@ dtb-$(CONFIG_CEDRIC_DTB) += \
 	msm8937-cedric-p3.dtb \
 	msm8937-cedric-p4.dtb \
 	msm8937-cedric-p5.dtb
+
+dtb-$(CONFIG_MONTANA_DTB) += \
+	msm8937-montana-p0.dtb \
+	msm8937-montana-p1a.dtb \
+	msm8937-montana-p1b.dtb \
+	msm8937-montana-p2.dtb \
+	msm8937-montana-p3.dtb
+
 endif
 
 ifneq ($(CONFIG_MMI_DTB),y)
