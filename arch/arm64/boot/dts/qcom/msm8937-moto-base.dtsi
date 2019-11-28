@@ -18,6 +18,8 @@
 	spi_7: spi@7af7000 { };
 	spi_6: spi@7af6000 { };
 	spi_4: spi@7af4000 { };
+	spi_1: spi@78b5000 { };
+
 };
 
 / {

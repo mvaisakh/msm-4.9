@@ -31,14 +31,6 @@
 	/delete-property/ qcom,msm-micbias1-ext-cap;
 	/delete-property/ qcom,msm-micbias2-ext-cap;
 
-
-	/delete-property/ pinctrl-2;
-	/delete-property/ pinctrl-3;
-	/delete-property/ pinctrl-4;
-	/delete-property/ pinctrl-5;
-	/delete-property/ pinctrl-6;
-	/delete-property/ pinctrl-7;
-
 	/delete-node/ spi@78b7000;
 	/delete-node/ sound-9335;
 	/delete-node/ i2c@7af5000;

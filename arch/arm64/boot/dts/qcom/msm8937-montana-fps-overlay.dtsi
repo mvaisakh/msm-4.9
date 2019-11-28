@@ -163,7 +163,7 @@
 	};
 };
 
-spi_1: spi@78b5000 { /* BLSP1 QUP1 */
+&spi_1 { /* BLSP1 QUP1 */
 		compatible = "qcom,spi-qup-v2";
 		status = "ok";
 		#address-cells = <1>;
