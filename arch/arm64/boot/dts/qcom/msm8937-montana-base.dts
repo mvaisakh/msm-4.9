@@ -30,13 +30,6 @@
 	/delete-property/ qcom,cdc-us-euro-gpios;
 	/delete-property/ qcom,msm-micbias1-ext-cap;
 	/delete-property/ qcom,msm-micbias2-ext-cap;
-
-	/delete-node/ spi@78b7000;
-	/delete-node/ sound-9335;
-	/delete-node/ i2c@7af5000;
-
-	/delete-property/ qcom,hdmi-dba-codec-rx;
-
 };
 
 &i2c_2 {
@@ -52,10 +45,8 @@
 
 };
 
-&pmi8950_charger{
-
+&pmi8950_charger {
 	/delete-property/ qcom,dc-thermal-mitigation;
-
 };
 
 &pmi8950_fg {
