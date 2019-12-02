@@ -49,7 +49,15 @@
 	/delete-property/ qcom,dc-thermal-mitigation;
 };
 
+&qpnp_smbcharger {
+	/delete-property/ qcom,dc-thermal-mitigation;
+};
+
 &pmi8950_fg {
+	/delete-property/ qcom,ext-sense-type; /* External Sense Resistor */
+}
+
+&qpnp_fg {
 	/delete-property/ qcom,ext-sense-type; /* External Sense Resistor */
 }
 

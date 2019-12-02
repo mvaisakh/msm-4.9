@@ -386,6 +386,7 @@
 	qcom,fastchg-current-ma = <3000>;
 	qcom,chg-thermal-mitigation = <3000>, <2500>, <2000>, <1600>,
 		<1000>, <500>, <300>;
+	/delete-property/ qcom,dc-thermal-mitigation;
 	qcom,parallel-charge-current-map = <3000 3000 0>,
 					   <2500 2500 0>,
 					   <2000 2000 0>,
