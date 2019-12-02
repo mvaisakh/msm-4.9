@@ -97,13 +97,13 @@ static int folio_notifier_callback(struct notifier_block *self,
 __attribute__((weak))
 int FPS_register_notifier(struct notifier_block *nb, unsigned long stype, bool report)
 {
-	return -ENODEV;
+	return 0;
 }
 
 __attribute__((weak))
 int FPS_unregister_notifier(struct notifier_block *nb, unsigned long stype)
 {
-	return -ENODEV;
+	return 0;
 }
 
 __attribute__((weak))
