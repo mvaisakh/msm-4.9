@@ -11,7 +11,6 @@
  * GNU General Public License for more details.
  */
 
-#include <dt-bindings/clock/msm-clocks-8952.h>
 
 &soc {
 	kgsl_smmu: arm,smmu-kgsl@1c40000 {
@@ -20,9 +19,11 @@
 		qcom,tz-device-id = "GPU";
 		reg = <0x1c40000 0x10000>;
 		#iommu-cells = <1>;
-		#global-interrupts = <1>;
-		interrupts =  <0 199 0>, <0 225 0>, <0 232 0>,
-				<0 233 0>, <0 234 0>;
+		#global-interrupts = <0>;
+		interrupts =  <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>,
+				<GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
 		qcom,dynamic;
 		qcom,use-3-lvl-tables;
 		qcom,enable-smmu-halt;
