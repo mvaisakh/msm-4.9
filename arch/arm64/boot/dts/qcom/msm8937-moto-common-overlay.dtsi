@@ -552,6 +552,7 @@
 
 &qpnp_smbcharger {
 	status = "okay";
+	/delete-property/ qcom,iterm-ma;
 	qcom,iterm-disabled;
 	qcom,usbid-disabled;
 	qcom,fastchg-current-ma = <2500>;
