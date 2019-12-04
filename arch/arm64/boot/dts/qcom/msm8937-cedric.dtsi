@@ -209,3 +209,8 @@
 &pmi_haptic {
 	qcom,vmax-mv = <2700>;
 };
+
+&qcom_seecom {
+	/delete-property/ qcom,commonlib64-loaded-by-uefi;
+	qcom,appsbl-qseecom-support;
+};
