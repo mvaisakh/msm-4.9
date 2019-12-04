@@ -447,3 +447,14 @@
 	qcom,vmax-mv = <2552>;
 };
 
+&spi_4 { /* BLSP1 QUP4 */
+    status = "disabled";
+    /delete-node/ stml0xx@0;
+};
+
+&qcom_seecom {
+	/delete-property/ qcom,commonlib64-loaded-by-uefi;
+	qcom,appsbl-qseecom-support;
+
+};
+
