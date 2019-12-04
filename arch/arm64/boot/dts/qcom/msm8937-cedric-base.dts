@@ -62,7 +62,7 @@
 
 	/delete-property/ qcom,dc-thermal-mitigation;
 	/delete-property/ qcom,enable-hvdcp-9v;
-	
+	/delete-property/ qcom,iterm-disable;
 	/delete-property/ qcom,iterm-ma;
 	/delete-property/ qcom,autoadjust-vfloat;
 
