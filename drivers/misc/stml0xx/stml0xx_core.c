@@ -11,6 +11,7 @@
  * GNU General Public License for more details.
  */
 
+#include <linux/kernel.h>
 #include <linux/cdev.h>
 #include <linux/delay.h>
 #include <linux/err.h>
@@ -30,7 +31,7 @@
 #include <linux/poll.h>
 #include <linux/regulator/consumer.h>
 #include <linux/slab.h>
-#include <linux/switch.h>
+#include <linux/extcon.h>
 #include <linux/time.h>
 #include <linux/uaccess.h>
 #include <linux/wakelock.h>
@@ -316,9 +317,9 @@ static int stml0xx_device_power_on(struct stml0xx_data *ps_stml0xx)
 	return err;
 }
 
-static ssize_t dock_print_name(struct switch_dev *switch_dev, char *buf)
+static ssize_t dock_print_name(struct extcon_dev *extcon_dev, char *buf)
 {
-	switch (switch_get_state(switch_dev)) {
+	switch (switch_get_state(extcon_dev)) {
 	case NO_DOCK:
 		return snprintf(buf, 5, "None\n");
 	case DESK_DOCK:
@@ -987,21 +988,21 @@ static int stml0xx_probe(struct spi_device *spi)
 	init_waitqueue_head(&ps_stml0xx->stml0xx_ms_data_wq);
 
 	ps_stml0xx->dsdev.name = "dock";
-	ps_stml0xx->dsdev.print_name = dock_print_name;
+	ps_stml0xx->dsdev.name = dock_print_name;
 	err = switch_dev_register(&ps_stml0xx->dsdev);
 	if (err) {
 		dev_err(&spi->dev, "Couldn't register switch (%s) rc=%d",
 			ps_stml0xx->dsdev.name, err);
-		ps_stml0xx->dsdev.dev = NULL;
+		ps_stml0xx->dsdev.dev;
 	}
 
 	ps_stml0xx->edsdev.name = "extdock";
-	ps_stml0xx->edsdev.print_name = dock_print_name;
+	ps_stml0xx->edsdev.name = dock_print_name;
 	err = switch_dev_register(&ps_stml0xx->edsdev);
 	if (err) {
 		dev_err(&spi->dev, "Couldn't register switch (%s) rc=%d",
 			ps_stml0xx->edsdev.name, err);
-		ps_stml0xx->edsdev.dev = NULL;
+		ps_stml0xx->edsdev.dev;
 	}
 
 	ps_stml0xx->input_dev = input_allocate_device();

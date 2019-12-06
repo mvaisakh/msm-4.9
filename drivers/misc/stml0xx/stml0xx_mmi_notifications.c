@@ -6,7 +6,7 @@
  */
 
 #include <linux/cdev.h>
-#include <linux/switch.h>
+#include <linux/extcon.h>
 #include <linux/wakelock.h>
 #include <linux/irq.h>
 
