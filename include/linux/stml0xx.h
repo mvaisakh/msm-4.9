@@ -22,7 +22,7 @@
 #include <linux/leds.h>
 #include <linux/module.h>
 #include <linux/spinlock.h>
-#include <linux/switch.h>
+#include <linux/extcon.h>
 #include <linux/wakelock.h>
 
 #ifdef CONFIG_MMI_HALL_NOTIFICATIONS
@@ -318,8 +318,8 @@ struct stml0xx_data {
 	struct cdev as_cdev;
 	struct cdev ms_cdev;
 
-	struct switch_dev dsdev;	/* Standard Dock switch */
-	struct switch_dev edsdev;	/* Motorola Dock switch */
+	struct extcon_dev dsdev;	/* Standard Dock switch */
+	struct extcon_dev edsdev;	/* Motorola Dock switch */
 
 	/* Android sensor event queue */
 	struct as_node as_queue;

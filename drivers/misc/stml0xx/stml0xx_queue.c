@@ -32,7 +32,7 @@
 #include <linux/regulator/consumer.h>
 #include <linux/slab.h>
 #include <linux/spinlock.h>
-#include <linux/switch.h>
+#include <linux/extcon.h>
 #include <linux/time.h>
 #include <linux/uaccess.h>
 #include <linux/wakelock.h>
