@@ -319,7 +319,7 @@ static int stml0xx_device_power_on(struct stml0xx_data *ps_stml0xx)
 
 static ssize_t dock_print_name(struct extcon_dev *extcon_dev, char *buf)
 {
-	switch (switch_get_state(extcon_dev)) {
+	switch (extcon_get_state(extcon_dev, 0)) {
 	case NO_DOCK:
 		return snprintf(buf, 5, "None\n");
 	case DESK_DOCK:
@@ -989,7 +989,7 @@ static int stml0xx_probe(struct spi_device *spi)
 
 	ps_stml0xx->dsdev.name = "dock";
 	ps_stml0xx->dsdev.name = dock_print_name;
-	err = switch_dev_register(&ps_stml0xx->dsdev);
+	err = extcon_dev_register(&ps_stml0xx->dsdev);
 	if (err) {
 		dev_err(&spi->dev, "Couldn't register switch (%s) rc=%d",
 			ps_stml0xx->dsdev.name, err);
@@ -998,7 +998,7 @@ static int stml0xx_probe(struct spi_device *spi)
 
 	ps_stml0xx->edsdev.name = "extdock";
 	ps_stml0xx->edsdev.name = dock_print_name;
-	err = switch_dev_register(&ps_stml0xx->edsdev);
+	err = extcon_dev_register(&ps_stml0xx->edsdev);
 	if (err) {
 		dev_err(&spi->dev, "Couldn't register switch (%s) rc=%d",
 			ps_stml0xx->edsdev.name, err);
@@ -1113,8 +1113,8 @@ static int stml0xx_remove(struct spi_device *spi)
 {
 	struct stml0xx_data *ps_stml0xx = spi_get_drvdata(spi);
 
-	switch_dev_unregister(&ps_stml0xx->dsdev);
-	switch_dev_unregister(&ps_stml0xx->edsdev);
+	extcon_dev_unregister(&ps_stml0xx->dsdev);
+	extcon_dev_unregister(&ps_stml0xx->edsdev);
 
 	if (ps_stml0xx->irq_wake != -1)
 		free_irq(ps_stml0xx->irq_wake, ps_stml0xx);
