@@ -667,6 +667,7 @@
 	pinctrl-names = "default", "usbid-off";
 	pinctrl-0 = <&usbid_default>;
 	pinctrl-1 = <&usbid_off>;
+	extcon = <&qpnp_smbcharger>;
 };
 
 &rpm_bus {
