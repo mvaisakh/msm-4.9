@@ -13,6 +13,8 @@
 #include "msm8937-moto-base.dtsi"
 #include "msm8937.dtsi"
 #include "pmi8950.dtsi"
+#include "msm8937-mdss.dtsi"
+#include "msm8937-mdss-pll.dtsi"
 #include "msm8937-pinctrl.dtsi"
 #include "msm8937-moto-pinctrl-overlay.dtsi"
 #include "carrier-channel-ids.dtsi"
