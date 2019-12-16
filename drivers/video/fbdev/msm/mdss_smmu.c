@@ -236,7 +236,6 @@ static int mdss_smmu_attach_v2(struct mdss_data_type *mdata)
 				if (rc) {
 					pr_err("iommu attach device failed for domain[%d] with err:%d\n",
 						i, rc);
-					BUG();
 					mdss_smmu_enable_power(mdss_smmu,
 						false);
 					goto err;
