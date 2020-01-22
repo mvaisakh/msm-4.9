@@ -21,11 +21,17 @@
 #include "msm8937-camera-sensor-mot-overlay.dtsi"
 #include "msm8937-cedric-fps-overlay.dtsi"
 
- / {
+/ {
 	model = "cedric";
 	compatible = "qcom,msm8937-cedric", "qcom,msm8937-moto",
 			"qcom,msm8937";
 
+};
+
+&venus_mem {
+	compatible = "removed-dma-pool";
+	no-map;
+	reg = <0x0 0x8ea00000 0x0 0x800000>;
 };
 
 &soc {
