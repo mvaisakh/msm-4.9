@@ -1,4 +1,8 @@
 # auto-detect subdirs
+ifeq ($(CONFIG_ARCH_MSM8937), y)
+include $(srctree)/techpack/audio/config/msm8937auto.conf
+export
+endif
 ifeq ($(CONFIG_ARCH_SDM845), y)
 include $(srctree)/techpack/audio/config/sdm845auto.conf
 export
@@ -22,6 +26,10 @@ LINUXINCLUDE    += \
                 -I$(srctree)/techpack/audio/include/uapi \
                 -I$(srctree)/techpack/audio/include
 
+ifeq ($(CONFIG_ARCH_MSM8937), y)
+LINUXINCLUDE    += \
+                -include $(srctree)/techpack/audio/config/msm8937autoconf.h
+endif
 ifeq ($(CONFIG_ARCH_SDM845), y)
 LINUXINCLUDE    += \
                 -include $(srctree)/techpack/audio/config/sdm845autoconf.h
