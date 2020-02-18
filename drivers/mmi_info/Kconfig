@@ -1,0 +1,5 @@
+config MMI_INFO
+	default n
+	bool "Motorola Mobility Info"
+	help
+	  Provide mechanism to export MSM various info.
