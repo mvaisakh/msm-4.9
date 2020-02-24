@@ -214,4 +214,6 @@ source "drivers/tee/Kconfig"
 
 source "drivers/mmi_info/Kconfig"
 
+source "drivers/mmi_annotate/Kconfig"
+
 endmenu
