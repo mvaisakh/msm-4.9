@@ -20,8 +20,10 @@ int mmi_ram_info_init(void);
 void mmi_ram_info_exit(void);
 int mmi_unit_info_init(void);
 void mmi_unit_info_exit(void);
+#ifdef CONFIG_MMI_BOOT_INFO
 int mmi_boot_info_init(void);
 void mmi_boot_info_exit(void);
+#endif
 int mmi_get_bootarg(char *key, char **value);
 
 struct mmi_storage_info {

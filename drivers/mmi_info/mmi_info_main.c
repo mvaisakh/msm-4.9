@@ -94,7 +94,9 @@ static int __init mmi_hw_info_init(void)
 	mmi_storage_info_init();
 	mmi_ram_info_init();
 	mmi_unit_info_init();
+#ifdef CONFIG_MMI_BOOT_INFO
 	mmi_boot_info_init();
+#endif
 	return 0;
 }
 
@@ -103,7 +105,9 @@ static void mmi_hw_info_exit(void)
 	mmi_storage_info_exit();
 	mmi_ram_info_exit();
 	mmi_unit_info_exit();
+#ifdef CONFIG_MMI_BOOT_INFO
 	mmi_boot_info_exit();
+#endif
 	kfree(bootargs_str);
 }
 

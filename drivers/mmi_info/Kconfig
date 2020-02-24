@@ -3,3 +3,9 @@ config MMI_INFO
 	bool "Motorola Mobility Info"
 	help
 	  Provide mechanism to export MSM various info.
+
+config MMI_BOOT_INFO
+	default n
+	bool "Motorola Mobility Boot Info"
+	help
+	  Provide mechanism to export MSM boot info.
