@@ -501,9 +501,9 @@ static int __configure_pipe_params(struct msm_fb_data_type *mfd,
 	if (layer->flags & MDP_LAYER_FLIP_UD)
 		pipe->flags |= MDP_FLIP_UD;
 	if (layer->flags & MDP_LAYER_SECURE_SESSION)
-		pipe->flags |= MDP_SECURE_OVERLAY_SESSION;
+		return -EINVAL;
 	if (layer->flags & MDP_LAYER_SECURE_DISPLAY_SESSION)
-		pipe->flags |= MDP_SECURE_DISPLAY_OVERLAY_SESSION;
+		return -EINVAL;
 	if (layer->flags & MDP_LAYER_SOLID_FILL)
 		pipe->flags |= MDP_SOLID_FILL;
 	if (layer->flags & MDP_LAYER_DEINTERLACE)
