@@ -202,6 +202,8 @@ struct sdm660_cdc_priv {
 	u32 hph_mode;
 	/* compander used for each rx chain */
 	bool spk_boost_set;
+	/* work around for potter speakr issue to use pdm clk */
+	bool boost_pdm_clk;
 	bool ear_pa_boost_set;
 	bool ext_spk_boost_set;
 	struct on_demand_supply on_demand_list[ON_DEMAND_SUPPLIES_MAX];

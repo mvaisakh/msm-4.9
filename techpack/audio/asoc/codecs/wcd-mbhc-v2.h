@@ -422,9 +422,11 @@ struct wcd_mbhc_config {
 	bool mono_stero_detection;
 	bool (*swap_gnd_mic)(struct snd_soc_codec *codec, bool active);
 	bool hs_ext_micbias;
+	bool is_selfistick;
 	bool gnd_det_en;
 	int key_code[WCD_MBHC_KEYCODE_NUM];
 	uint32_t linein_th;
+	uint32_t selfstick_th;
 	bool moisture_en;
 	int mbhc_micbias;
 	int anc_micbias;
@@ -523,6 +525,7 @@ struct wcd_mbhc {
 	bool in_swch_irq_handler;
 	bool hphl_swh; /*track HPHL switch NC / NO */
 	bool gnd_swh; /*track GND switch NC / NO */
+	s32 insert_debounce; /* debounce time when inserting headset */
 	u32 hs_thr;
 	u32 hph_thr;
 	u32 swap_thr;

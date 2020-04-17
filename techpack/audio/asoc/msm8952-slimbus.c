@@ -32,6 +32,12 @@
 #include "codecs/msm-cdc-pinctrl.h"
 #include "codecs/wcd9335.h"
 #include "codecs/wcd-mbhc-v2.h"
+#ifdef CONFIG_SND_SOC_MARLEY
+#include "codecs/marley.h"
+#include "codecs/cs35l34.h"
+#include <linux/mfd/arizona/registers.h>
+#include "codecs/aov_trigger.h"
+#endif
 #include "codecs/wsa881x.h"
 #include "msm8952-slimbus.h"
 
@@ -70,6 +76,15 @@
 
 #define TDM_SLOT_OFFSET_MAX    8
 
+#ifdef CONFIG_SND_SOC_MARLEY
+#define FLL_RATE_MARLEY 294912000
+#define MARLEY_SYSCLK_RATE (FLL_RATE_MARLEY / 3)
+#define MARLEY_DSPCLK_RATE (FLL_RATE_MARLEY / 2)
+#define CS35L34_MCLK_RATE 6144000
+#define CS35L35_MCLK_RATE 12288000
+#define CS35L35_SCLK_RATE 1536000
+#endif
+
 enum btsco_rates {
 	RATE_8KHZ_ID,
 	RATE_16KHZ_ID,
@@ -83,6 +98,7 @@ enum {
 	TDM_MAX,
 };
 
+static atomic_t mods_mi2s_active;
 static int slim0_rx_sample_rate = SAMPLING_RATE_48KHZ;
 static int slim0_tx_sample_rate = SAMPLING_RATE_48KHZ;
 static int slim1_tx_sample_rate = SAMPLING_RATE_48KHZ;
@@ -138,6 +154,18 @@ static int msm_pri_tdm_tx_0_sample_rate = SAMPLING_RATE_48KHZ;
 static int msm_sec_tdm_rx_0_sample_rate = SAMPLING_RATE_48KHZ;
 static int msm_sec_tdm_tx_0_sample_rate = SAMPLING_RATE_48KHZ;
 
+static int msm_quat_mi2s_bit_format = SNDRV_PCM_FORMAT_S16_LE;
+static int msm_quat_mi2s_sample_rate = SAMPLING_RATE_48KHZ;
+static int msm_quat_mi2s_ch = 2;
+
+static int msm_quat_clk_freq_in_hz[5][3] = {
+	{Q6AFE_LPASS_IBIT_CLK_512_KHZ, Q6AFE_LPASS_IBIT_CLK_1_P024_MHZ, Q6AFE_LPASS_IBIT_CLK_1_P024_MHZ},
+	{Q6AFE_LPASS_IBIT_CLK_1_P024_MHZ, Q6AFE_LPASS_IBIT_CLK_2_P048_MHZ, Q6AFE_LPASS_IBIT_CLK_2_P048_MHZ},
+	{Q6AFE_LPASS_IBIT_CLK_1_P536_MHZ, Q6AFE_LPASS_IBIT_CLK_3_P072_MHZ, Q6AFE_LPASS_IBIT_CLK_3_P072_MHZ},
+	{Q6AFE_LPASS_IBIT_CLK_3_P072_MHZ, Q6AFE_LPASS_IBIT_CLK_6_P144_MHZ, Q6AFE_LPASS_IBIT_CLK_6_P144_MHZ},
+	{Q6AFE_LPASS_IBIT_CLK_6_P144_MHZ, Q6AFE_LPASS_IBIT_CLK_12_P288_MHZ, Q6AFE_LPASS_IBIT_CLK_12_P288_MHZ}
+};
+
 static char const *tdm_ch_text[] = {"One", "Two", "Three", "Four",
 	"Five", "Six", "Seven", "Eight"};
 static char const *tdm_bit_format_text[] = {"S16_LE", "S24_LE", "S24_3LE",
@@ -155,6 +183,9 @@ static unsigned int tdm_slot_offset[TDM_MAX][TDM_SLOT_OFFSET_MAX] = {
 	/* SEC_TDM_TX */
 	{0, 4, 8, 12, 16, 20, 24, 28},
 };
+
+static int msm_proxy_rx_ch = 2;
+static void *adsp_state_notifier;
 
 static int msm8952_enable_codec_mclk(struct snd_soc_codec *codec, int enable,
 					bool dapm);
@@ -510,6 +541,34 @@ static int slim0_rx_sample_rate_get(struct snd_kcontrol *kcontrol,
 				slim0_rx_sample_rate);
 
 	return 0;
+}
+
+static int quat_mi2s_get_rate(void)
+{
+	int value;
+
+	switch (msm_quat_mi2s_sample_rate) {
+	case SAMPLING_RATE_16KHZ:
+		value = 0;
+		break;
+	case SAMPLING_RATE_32KHZ:
+		value = 1;
+		break;
+	case SAMPLING_RATE_48KHZ:
+		value = 2;
+		break;
+	case SAMPLING_RATE_96KHZ:
+		value = 3;
+		break;
+	case SAMPLING_RATE_192KHZ:
+		value = 4;
+		break;
+	case SAMPLING_RATE_48KHZ:
+	default:
+		value = 2;
+		break;
+	}
+	return value;
 }
 
 static int slim0_rx_sample_rate_put(struct snd_kcontrol *kcontrol,
