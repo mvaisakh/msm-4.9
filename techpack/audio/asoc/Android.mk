@@ -13,7 +13,7 @@ TARGET := sdm710
 AUDIO_SELECT  := CONFIG_SND_SOC_SDM670=m
 endif
 
-ifeq ($(call is-board-platform-in-list,msm8953 msm8937),true)
+ifeq ($(call is-board-platform-in-list,msm8953),true)
 TARGET := sdm450
 AUDIO_SELECT  += CONFIG_SND_SOC_SDM450=m
 AUDIO_SELECT  += CONFIG_SND_SOC_EXT_CODEC_SDM450=m

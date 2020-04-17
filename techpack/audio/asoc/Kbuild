@@ -115,6 +115,10 @@ ifdef CONFIG_SND_SOC_SDM450
 	MACHINE_OBJS += msm8952.o
 endif
 
+ifdef CONFIG_SND_SOC_MSM8937
+	MACHINE_OBJS += msm8952.o
+endif
+
 ifdef CONFIG_SND_SOC_MSM8909
 	MACHINE_INT_OBJS += msm8952.o
 endif
@@ -219,6 +223,9 @@ obj-$(CONFIG_SND_SOC_QDSP6V2) += platform_dlkm.o
 platform_dlkm-y := $(PLATFORM_OBJS)
 
 obj-$(CONFIG_SND_SOC_SDM450) += machine_dlkm.o
+machine_dlkm-y := $(MACHINE_OBJS)
+
+obj-$(CONFIG_SND_SOC_MSM8937) += machine_dlkm.o
 machine_dlkm-y := $(MACHINE_OBJS)
 
 obj-$(CONFIG_SND_SOC_MSM8909) += machine_int_dlkm.o
