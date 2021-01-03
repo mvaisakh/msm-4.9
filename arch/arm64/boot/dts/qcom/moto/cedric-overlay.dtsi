@@ -1,0 +1,6 @@
+#include "cedric/cedric.dtsi"
+#include "msm8937-moto-common.dtsi"
+#include "msm8937-camera-sensor-mot.dtsi"
+#include "cedric/cedric-fps.dtsi"
+#include "dsi/dsi-panel-mot-inx-497-1080p-video.dtsi"
+#include "dsi/dsi-panel-mot-tianma-497-1080p-video.dtsi"

@@ -1,4 +1,4 @@
-/* Copyright (c) 2015, Motorola Mobility Inc. All rights reserved.
+/* Copyright (c) 2016, The Linux Foundation. All rights reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -10,22 +10,8 @@
  * GNU General Public License for more details.
  */
 
-/dts-v1/;
-
-#include "moto-msm8937.dtsi"
-#include "moto/cedric-overlay.dtsi"
-
-/ {
-	qcom,board-id = <0x41 0x8200>;
-};
-
-&i2c_2 {
-	sx9310@28 {
-		cap_vdd-supply = <&pm8937_l10>;
+&mdss_mdp {
+	mot_inx_497_1080p_vid_v0: qcom,mdss_dsi_mot_inx_497_1080p_video_v0 {
+		#include "dsi-panel-mot-inx-497-1080p-video-common.dtsi"
 	};
-};
-
-&pm8937_l22 {
-	regulator-always-on;
-	regulator-boot-on;
 };

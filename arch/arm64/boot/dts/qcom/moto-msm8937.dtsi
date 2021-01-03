@@ -1,0 +1,6 @@
+#include "msm8937.dtsi"
+#include "pmi8950.dtsi"
+#include "moto/msm8937-moto-common.dtsi"
+#include "msm8937-pinctrl.dtsi"
+#include "moto/msm8937-moto-pinctrl.dtsi"
+#include "moto/carrier-channel-ids.dtsi"
