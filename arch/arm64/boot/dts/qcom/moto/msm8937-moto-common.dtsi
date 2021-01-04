@@ -45,13 +45,19 @@
 &reserved_memory {
 	ramoops_mem: ramoops_mem_region {
 		compatible = "ramoops";
-		ramoops-annotate-size = <0x800>;
+		ramoops-annotate-size = <MMI_ANNOTATE_SIZE>;
 		no-map;
-		console-size = <0x40000>;
-		pmsg-size = <0x40000>;
-		record-size = <0x3f800>;
-		reg = <0x0 0xae000000 0x0 0x80000>;
+		console-size = <RAMOOPS_CONSOLE_SIZE>;
+		pmsg-size = <RAMOOPS_PMSG_SIZE>;
+		record-size = <RAMOOPS_RECORD_SIZE>;
+		reg = <0x0 0xae000000 0x0 RAMOOPS_SIZE>;
 		label = "ramoops_mem";
+	};
+
+	mmi_annotate_mem: mmi_annotate_mem_region {
+		no-map;
+		reg = <0x0 MMI_ANNOTATE_BASE_8937
+				0x0 MMI_ANNOTATE_SIZE>;
 	};
 };
 
@@ -450,9 +456,9 @@
 
 		android,ramoops-buffer-start = <0xae000000>;
 		android,ramoops-buffer-size = <0x80000>;
-		android,ramoops-console-size = <0x40000>;
-		android,ramoops-record-size = <0x3F800>;
-		android,ramoops-annotate-size = <0x800>;
+		android,ramoops-console-size = <RAMOOPS_CONSOLE_SIZE>;
+		android,ramoops-record-size = <RAMOOPS_RECORD_SIZE>;
+		android,ramoops-annotate-size = <MMI_ANNOTATE_SIZE>;
 		android,ramoops-dump-oops = <0x1>;
 
 		linux,contiguous-region = <&ramoops_mem>;
@@ -468,6 +474,11 @@
 		linux,contiguous-region = <&tzlog_bck_mem>;
 	};
 
+	mmi_annotate {
+		compatible = "mmi,annotate";
+		memory-region = <&mmi_annotate_mem>;
+		mem-size = <0x20000>;
+	};
 };
 
 &blsp1_uart2 {
