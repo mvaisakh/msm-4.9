@@ -560,6 +560,7 @@
 
 &qpnp_smbcharger {
 	status = "okay";
+	extcon = <&qpnp_smbcharger>;
 	/delete-property/ qcom,iterm-ma;
 	qcom,iterm-disabled;
 	qcom,usbid-disabled;
