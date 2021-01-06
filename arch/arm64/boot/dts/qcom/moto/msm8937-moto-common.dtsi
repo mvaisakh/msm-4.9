@@ -7,8 +7,6 @@
 		i2c3 = &i2c_3;
 		/delete-property/ spi3;
 		/delete-property/ i2c5;
-		spi4 = &spi_4;
-		spi7 = &spi_7;
 
 	};
 };
@@ -165,6 +163,8 @@
 	/delete-node/ spi@78b7000;
 	/delete-node/ sound-9335;
 	/delete-node/ i2c@7af5000;
+	spi_4: spi@78b8000 {};
+	spi_7: spi@7af7000 {};
 
 	alsa_to_h2w {
 		compatible = "mmi,alsa-to-h2w";
@@ -266,7 +266,38 @@
 		asoc-codec-names = "msm-stub-codec.1", "cajon_codec";
 	};
 
-	spi_7: spi@7af7000 { /* BLSP2 QUP2 */
+	ramoops {
+		compatible = "ramoops";
+		status = "ok";
+
+		android,ramoops-buffer-start = <0xae000000>;
+		android,ramoops-buffer-size = <0x80000>;
+		android,ramoops-console-size = <RAMOOPS_CONSOLE_SIZE>;
+		android,ramoops-record-size = <RAMOOPS_RECORD_SIZE>;
+		android,ramoops-annotate-size = <MMI_ANNOTATE_SIZE>;
+		android,ramoops-dump-oops = <0x1>;
+
+		linux,contiguous-region = <&ramoops_mem>;
+	};
+
+	wdog: qcom,wdt@b017000 {
+		qcom,bark-time = <22000>;
+		linux,contiguous-region = <&wdog_cpuctx_mem>;
+	};
+
+	qcom_tzlog: tz-log@08600720 {
+		status = "okay";
+		linux,contiguous-region = <&tzlog_bck_mem>;
+	};
+
+	mmi_annotate {
+		compatible = "mmi,annotate";
+		memory-region = <&mmi_annotate_mem>;
+		mem-size = <0x20000>;
+	};
+};
+
+&spi_7 { /* BLSP2 QUP2 */
 		compatible = "qcom,spi-qup-v2";
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -293,7 +324,7 @@
 		/* master-id for BLSP2 is MSM_BUS_MASTER_BLSP_2 or 84 */
 		qcom,master-id = <84>;
 		status = "/chosen", "mmi,dtv", "true";
-		fci_dtv: fc8180@0 {
+	fci_dtv: fc8180@0 {
 			status = "/chosen", "mmi,dtv", "true";
 			compatible = "fci,isdbt";
 			reg = <0>;
@@ -309,10 +340,10 @@
 			isdbt_vdd-supply = <&pm8937_l6>;
 			qcom,vdd-min-max-voltage = <1800000 1800000>;
 			qcom,bbm-xtal-freq = <26000>;
-			};
-		};
+	};
+};
 
-	spi_4: spi@78b8000 { /* BLSP1 QUP4 */
+&spi_4 { /* BLSP1 QUP4 */
 		compatible = "qcom,spi-qup-v2";
 		#address-cells = <1>;
 		#size-cells = <0>;
@@ -394,37 +425,6 @@
 				 &stml0xx_wakeup_default
 				 &stml0xx_reset_default
 			 	 &stml0xx_flash_en_default>;
-		};
-	};
-
-	ramoops {
-		compatible = "ramoops";
-		status = "ok";
-
-		android,ramoops-buffer-start = <0xae000000>;
-		android,ramoops-buffer-size = <0x80000>;
-		android,ramoops-console-size = <RAMOOPS_CONSOLE_SIZE>;
-		android,ramoops-record-size = <RAMOOPS_RECORD_SIZE>;
-		android,ramoops-annotate-size = <MMI_ANNOTATE_SIZE>;
-		android,ramoops-dump-oops = <0x1>;
-
-		linux,contiguous-region = <&ramoops_mem>;
-	};
-
-	wdog: qcom,wdt@b017000 {
-		qcom,bark-time = <22000>;
-		linux,contiguous-region = <&wdog_cpuctx_mem>;
-	};
-
-	qcom_tzlog: tz-log@08600720 {
-		status = "okay";
-		linux,contiguous-region = <&tzlog_bck_mem>;
-	};
-
-	mmi_annotate {
-		compatible = "mmi,annotate";
-		memory-region = <&mmi_annotate_mem>;
-		mem-size = <0x20000>;
 	};
 };
 
