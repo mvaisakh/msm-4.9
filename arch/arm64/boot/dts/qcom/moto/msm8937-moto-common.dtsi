@@ -163,8 +163,9 @@
 	/delete-node/ spi@78b7000;
 	/delete-node/ sound-9335;
 	/delete-node/ i2c@7af5000;
-	spi_4: spi@78b8000 {};
-	spi_7: spi@7af7000 {};
+	spi_4: spi@7af4000 { };
+	spi_6: spi@7af6000 { };
+	spi_7: spi@7af7000 { };
 
 	alsa_to_h2w {
 		compatible = "mmi,alsa-to-h2w";
