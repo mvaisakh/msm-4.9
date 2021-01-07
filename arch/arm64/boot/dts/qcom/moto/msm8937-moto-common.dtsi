@@ -3,12 +3,20 @@
 #include <moto-mem-reserve.h>
 
 / {
-	aliases {
+	model = "Qualcomm Technologies, Inc. MSM8937 SOC";
+	compatible = "qcom,msm8937";
+
+	chosen: chosen { };
+	aliases: aliases {
+		spi7 = &spi_7;
+		spi4 = &spi_4;
 		i2c3 = &i2c_3;
 		/delete-property/ spi3;
 		/delete-property/ i2c5;
-
 	};
+	mot_batterydata: qcom,battery-data {};
+	utags: utags {};
+	hw: hw {};
 };
 
 &reserved_memory {
